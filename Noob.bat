@@ -6,7 +6,6 @@
   SET script_ver=1.00
   SET script_name=%~n0
   SET server_url=https://raw.githubusercontent.com/devrodrigopires/autoupdate/master/
-
   SET script_name_bat=%~dp0%script_name%.bat
   SET script_name_cfg=%~dp0%script_name%.conf
   SET script_name_latest_ver=%~dp0%script_name%.latest.ver
@@ -52,8 +51,8 @@
 
 
   :SCRIPT_COMPARE_VER
-  echo %server_url%%script_name%
-  ECHO Please wait while script versions are compared...
+  echo %server_url%%script_name%.bat
+  ECHO Por favor, aguarde em quanto eu comparo alguma nova versao disponivel com a atual.
  powershell -command "& {&'Invoke-WebRequest' -Uri '%server_url%%script_name%.current.ver' -OutFile '%cd%'}"
   IF NOT EXIST "%script_name_latest_ver%" GOTO END
   SET /p script_latest_ver= < "%script_name_latest_ver%"
