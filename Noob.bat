@@ -39,7 +39,7 @@
 
   :SCRIPT_MISSING_CFG
   ECHO Criando o arquivo %script_name%.conf ...
-  ECHO __deploy_mode=0                   > "%script_name_cfg%"
+  ECHO __deploy_mode=1                   > "%script_name_cfg%"
   ECHO repository_base_url=%server_url% >> "%script_name_cfg%"
   ECHO auto_update_compare=1                >> "%script_name_cfg%"
   ECHO auto_update_download=1               >> "%script_name_cfg%"
@@ -53,7 +53,7 @@
 
   :SCRIPT_COMPARE_VER
   ECHO Please wait while script versions are compared...
-  Powershell -command "& { (New-Object Net.WebClient).DownloadFile('%server_url%%script_name%.current.ver', '%script_name_latest_ver%') }"
+ powershell -command "& {&'Invoke-WebRequest' -Uri '%server_url%%script_name%.current.ver' -OutFile '%cd%'}"
   IF NOT EXIST "%script_name_latest_ver%" GOTO END
   SET /p script_latest_ver= < "%script_name_latest_ver%"
   IF %script_ver% EQU %script_latest_ver% CALL :SCRIPT_COMPARE_VER_SAME
