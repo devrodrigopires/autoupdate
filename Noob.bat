@@ -5,7 +5,7 @@
   SET time_choice_wait=20
   SET script_ver=1.00
   SET script_name=%~n0
-  SET server_url=https://github.com/devrodrigopires/autoupdate/
+  SET server_url=https://raw.githubusercontent.com/devrodrigopires/autoupdate/master/
 
   SET script_name_bat=%~dp0%script_name%.bat
   SET script_name_cfg=%~dp0%script_name%.conf
@@ -52,6 +52,7 @@
 
 
   :SCRIPT_COMPARE_VER
+  echo %server_url%%script_name%
   ECHO Please wait while script versions are compared...
  powershell -command "& {&'Invoke-WebRequest' -Uri '%server_url%%script_name%.current.ver' -OutFile '%cd%'}"
   IF NOT EXIST "%script_name_latest_ver%" GOTO END
